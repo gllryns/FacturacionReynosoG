@@ -15,8 +15,8 @@ import java.util.List;
 @Entity
 @Table(name = "comprobantes")
 public class Comprobante {
-    public Comprobante(Cliente cliente) {
-        this.cliente = cliente;
+    public Comprobante(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
     @Id
@@ -32,9 +32,10 @@ public class Comprobante {
     @OneToMany(mappedBy = "comprobante", orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
+//    @JoinColumn(name = "cliente_id", nullable = false)
+    @Column(name = "cliente_id", nullable = false)
+    private Long clienteId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_comprobante")

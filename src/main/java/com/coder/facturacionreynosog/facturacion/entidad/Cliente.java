@@ -3,6 +3,8 @@ package com.coder.facturacionreynosog.facturacion.entidad;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -24,6 +26,9 @@ public class Cliente {
 
     @Column(name = "apellido", nullable = false)
     private String apellido;
+
+    @OneToMany(mappedBy = "clienteId", orphanRemoval = true)
+    private List<Comprobante> comprobantes = new ArrayList<>();
 
     public Cliente(String nombre, String apellido) {
         this.nombre = nombre;

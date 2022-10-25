@@ -18,13 +18,15 @@ public class Item {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "comprobante_id", nullable = false)
-    private Comprobante comprobante;
+//    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+//    @JoinColumn(name = "comprobante_id", nullable = false)
+@Column(name = "comprobante_id", nullable = false)
+    private Long comprobante;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "producto_productid", nullable = false)
-    private Producto producto;
+//    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+//    @JoinColumn(name = "producto_productid", nullable = false)
+    @Column(name = "producto_id", nullable = false)
+    private Long producto;
 
     @Column(name = "precio", nullable = false)
     private Double precio;
@@ -36,7 +38,7 @@ public class Item {
         return this.cantidad * precio;
     }
 
-    public Item(Comprobante comprobante, Producto producto, Double precio, Integer cantidad) {
+    public Item(Long comprobante, Long producto, Double precio, Integer cantidad) {
         this.comprobante = comprobante;
         this.producto = producto;
         this.precio = precio;
