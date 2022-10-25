@@ -2,10 +2,7 @@ package com.coder.facturacionreynosog.facturacion.entidad;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +13,9 @@ import javax.persistence.Table;
 @Table(name = "productos")
 public class Producto {
     @Id
-    @Column(name = "productid", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_seq")
+    @SequenceGenerator(name = "producto_seq", sequenceName = "producto_seq")
+    @Column(name = "id", nullable = false, insertable = false, updatable = false)
     private Long id;
 
     @Column(name = "nombre", nullable = false, unique = true)
